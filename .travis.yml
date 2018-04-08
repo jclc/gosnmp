@@ -1,10 +1,12 @@
 language: go
 
 # tests: (6 major ports) * (3 releases, 2 current & RC) = 18 cases
-# TODO work out Travis syntax for RC's
+# future RC's: 10 was named "1.10rc1"
 # https://stackoverflow.com/questions/49714106/which-goarchs-should-an-opensource-golang-project-test-against
 
 go:
+# - 1.8
+# - 1.9
 - "1.10"
 
 env:
@@ -14,7 +16,7 @@ env:
   matrix:
     - GOOS=linux   TRAVIS_GOARCH=amd64
     - GOOS=linux   TRAVIS_GOARCH=386
-    - GOOS=linux   TRAVIS_GOARCH=arm
+    # - GOOS=linux   TRAVIS_GOARCH=arm # is giving "exec format error" TODO
     - GOOS=darwin  TRAVIS_GOARCH=amd64
     - GOOS=windows TRAVIS_GOARCH=amd64
     - GOOS=windows TRAVIS_GOARCH=386
