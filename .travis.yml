@@ -1,12 +1,11 @@
 language: go
 
-# tests: (6 major ports) * (3 releases, 2 current & RC) = 18 cases
-# future RC's: 10 was named "1.10rc1"
-# https://stackoverflow.com/questions/49714106/which-goarchs-should-an-opensource-golang-project-test-against
+# https://tinyurl.com/yb84s376 "SO which GOARCH's should be tested?"
+# for the moment, do 3 major releases, until next RC comes out
 
 go:
-# - 1.8
-# - 1.9
+ - 1.8
+ - 1.9
 - "1.10"
 
 env:
@@ -14,12 +13,10 @@ env:
     - GOSNMP_TARGET=127.0.0.1
     - GOSNMP_PORT=161
   matrix:
+    # I can build non-Linux platforms here, but how would I put the binary on
+    # other platforms to run the tests? Would that provide value?
     - GOOS=linux   TRAVIS_GOARCH=amd64
     - GOOS=linux   TRAVIS_GOARCH=386
-    # - GOOS=linux   TRAVIS_GOARCH=arm # is giving "exec format error" TODO
-    - GOOS=darwin  TRAVIS_GOARCH=amd64
-    - GOOS=windows TRAVIS_GOARCH=amd64
-    - GOOS=windows TRAVIS_GOARCH=386
 
 before_install:
  - sudo apt-get update -qq
